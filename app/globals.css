@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  --font-display: "Cormorant Garamond", "Bodoni 72", "Bodoni MT", Didot, Garamond, Georgia, serif;
+  --font-sans: Inter, "Helvetica Neue", Arial, sans-serif;
+  --porcelain: #f5f0e8;
+  --chalk: #fffaf1;
+  --ink: #151411;
+  --soft-black: #24211d;
+  --graphite: #4a453e;
+  --champagne: #ad8a5b;
+  --sand: #d8c9b3;
+  --stone: #cfc5b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--porcelain);
+  color: var(--ink);
+  font-family: var(--font-sans), Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--chalk);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.noise {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  opacity: 0.045;
+  background-image:
+    linear-gradient(115deg, rgba(20, 20, 20, 0.2), transparent 35%),
+    radial-gradient(circle at 25% 25%, rgba(20, 20, 20, 0.2) 0 1px, transparent 1px);
+  background-size: 100% 100%, 6px 6px;
+  mix-blend-mode: multiply;
+}
+
+.mask-fade {
+  mask-image: linear-gradient(to bottom, black 76%, transparent 100%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.premium-shadow {
+  box-shadow: 0 26px 80px rgba(28, 24, 19, 0.12);
+}
+
+video,
+img {
+  max-width: 100%;
+}
