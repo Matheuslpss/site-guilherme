@@ -4,16 +4,28 @@ import { AnimatePresence, motion, useScroll, useTransform, type Variants } from 
 import { ArrowUpRight, Film, Mail, Menu, MoveRight, Play, Send, X } from "lucide-react";
 import { useState } from "react";
 
-const navItems = ["Projetos", "Servicos", "Mentoria", "Sobre", "Contato"];
+const navItems = ["Projetos", "Serviços", "Mentoria", "Sobre", "Contato"];
+
+const navHref = (item: string) => {
+  const targets: Record<string, string> = {
+    Projetos: "#projetos",
+    Serviços: "#servicos",
+    Mentoria: "#mentoria",
+    Sobre: "#sobre",
+    Contato: "#contato"
+  };
+
+  return targets[item] ?? "#";
+};
 
 const projects = [
   {
     title: "Casa Horizonte",
-    category: "Residencia / Fachada",
+    category: "Residência / Fachada",
     year: "2026",
     image: "/assets/hero-architecture.png",
     video: "/mp_.mp4",
-    description: "Estudo de fachada contemporanea, luz de fim de tarde e atmosfera imobiliaria premium."
+    description: "Estudo de fachada contemporânea, luz de fim de tarde e atmosfera imobiliária premium."
   },
   {
     title: "Interior Serena",
@@ -21,7 +33,7 @@ const projects = [
     year: "2026",
     image: "/assets/project-living.png",
     video: "/mp_.mp4",
-    description: "Visualizacao de interiores com foco em materiais, conforto visual e direcao de arte."
+    description: "Visualização de interiores com foco em materiais, conforto visual e direção de arte."
   },
   {
     title: "Atelier Nobre",
@@ -33,32 +45,32 @@ const projects = [
   },
   {
     title: "Villa Dusk",
-    category: "Resort / Animacao",
+    category: "Resort / Animação",
     year: "2025",
     image: "/assets/hero-architecture.png",
     video: "/mp_.mp4",
-    description: "Preview cinematografico para narrativa de venda, chegada, escala e experiencia espacial."
+    description: "Preview cinematográfico para narrativa de venda, chegada, escala e experiência espacial."
   }
 ];
 
 const services = [
-  "Visualizacao arquitetonica 3D",
+  "Visualização arquitetônica 3D",
   "Interiores",
   "Fachadas",
   "CGI para empreendimentos",
-  "Renderizacao imobiliaria",
-  "Design visual arquitetonico",
-  "Animacoes 3D",
+  "Renderização imobiliária",
+  "Design visual arquitetônico",
+  "Animações 3D",
   "Conceitos visuais para arquitetura"
 ];
 
 const mentorshipItems = [
-  "Videos mentorando",
+  "Vídeos mentorando",
   "Bastidores e making of",
-  "Workflow de producao",
-  "Estudos de iluminacao",
+  "Workflow de produção",
+  "Estudos de iluminação",
   "Processo criativo",
-  "Direcao de imagem"
+  "Direção de imagem"
 ];
 
 const softEase = [0.22, 1, 0.36, 1] as const;
@@ -150,7 +162,7 @@ function FullscreenMenu({
                   <motion.a
                     variants={fadeUp}
                     key={item}
-                    href={`#${item.toLowerCase()}`}
+                    href={navHref(item)}
                     onClick={onClose}
                     className="group flex items-center justify-between border-b border-white/12 py-5 font-display text-5xl leading-none tracking-tight text-white/90 transition hover:text-white sm:text-7xl lg:text-8xl"
                   >
@@ -167,7 +179,7 @@ function FullscreenMenu({
               >
                 <p className="text-xs uppercase tracking-[0.32em] text-white/34">Archviz studio</p>
                 <p className="mt-5 text-lg leading-8">
-                  Imagens, filmes e direcao visual para arquitetura, interiores e empreendimentos
+                  Imagens, filmes e direção visual para arquitetura, interiores e empreendimentos
                   que precisam comunicar valor antes da obra existir.
                 </p>
               </motion.div>
@@ -220,7 +232,7 @@ export default function Home() {
             </a>
             <div className="flex items-center gap-10 text-sm font-medium text-white/82">
               {navItems.slice(0, 4).map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} className="transition hover:text-white">
+                <a key={item} href={navHref(item)} className="transition hover:text-white">
                   {item}
                 </a>
               ))}
@@ -262,33 +274,33 @@ export default function Home() {
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.1, duration: 0.82, ease: softEase }}
+                  transition={{ delay: 0.8, duration: 0.82, ease: softEase }}
                   className="mb-6 text-xs font-semibold uppercase tracking-[0.34em] text-white/68 opacity-0"
                 >
-                  Archviz / CGI / Interiors
+                  ARCHVIZ / CGI / INTERIORS
                 </motion.p>
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.32, duration: 0.9, ease: softEase }}
+                  transition={{ delay: 1.1, duration: 0.9, ease: softEase }}
                   className="max-w-5xl font-display text-[13.2vw] font-medium leading-[0.9] tracking-tight text-balance opacity-0 sm:text-[9.5vw] sm:leading-[0.86] lg:text-[6.8vw]"
                 >
-                  Visualizacao arquitetonica e experiencias visuais em 3D.
+                  Visualização arquitetônica e experiências visuais em 3D.
                 </motion.h1>
               </div>
               <div className="max-w-md lg:justify-self-end">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.55, duration: 0.82, ease: softEase }}
+                  transition={{ delay: 1.4, duration: 0.82, ease: softEase }}
                   className="text-base leading-7 text-white/76 opacity-0 sm:text-lg"
                 >
-                  Arquitetura, interiores e renderizacoes realistas para projetos premium.
+                  Arquitetura, interiores e renderizações realistas para projetos premium.
                 </motion.p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.75, duration: 0.82, ease: softEase }}
+                  transition={{ delay: 1.7, duration: 0.82, ease: softEase }}
                   className="mt-7 flex flex-wrap gap-3 opacity-0"
                 >
                   <PrimaryButton href="#projetos" variant="light">
@@ -313,14 +325,14 @@ export default function Home() {
           className="mx-auto grid max-w-7xl gap-10 border-b border-black/10 pb-20 lg:grid-cols-[0.72fr_1.28fr]"
         >
           <motion.div variants={fadeUp}>
-            <SectionLabel>Estudio de visualizacao</SectionLabel>
+            <SectionLabel>Estúdio de visualização</SectionLabel>
           </motion.div>
           <motion.p
             variants={fadeUp}
             className="font-display text-4xl font-medium leading-[1.02] tracking-tight text-balance sm:text-5xl lg:text-6xl"
           >
-            Criamos imagens e filmes que transformam projetos arquitetonicos em desejo,
-            percepcao de valor e narrativa visual.
+            Criamos imagens e filmes que transformam projetos arquitetônicos em desejo,
+            percepção de valor e narrativa visual.
           </motion.p>
         </motion.div>
       </section>
@@ -342,7 +354,7 @@ export default function Home() {
                 Cases premium para arquitetura, interiores e empreendimentos.
               </h2>
               <p className="mt-7 max-w-2xl leading-8 text-[var(--graphite)]">
-                Cada imagem nasce como uma peca editorial: luz, escala, materialidade e
+                Cada imagem nasce como uma peça editorial: luz, escala, materialidade e
                 enquadramento trabalhando para vender uma atmosfera realista.
               </p>
             </motion.div>
@@ -376,7 +388,7 @@ export default function Home() {
                   />
                   <video
                     src={project.video}
-                    className={`absolute inset-0 h-full w-full object-cover transition duration-700 ${
+                    className={`absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105 ${
                       activePreview === project.title ? "opacity-100" : "opacity-0"
                     }`}
                     muted
@@ -386,13 +398,14 @@ export default function Home() {
                     poster={project.image}
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(0,0,0,0.48)_100%)]" />
+                  <div className="absolute inset-0 bg-black/0 transition duration-700 group-hover:bg-black/10" />
                   <div className="absolute bottom-5 left-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/78">
                     <Film className="h-4 w-4" />
                     Hover preview
                   </div>
                 </div>
                 <div className="grid gap-5 p-5 sm:grid-cols-[1fr_auto] sm:p-6">
-                  <div>
+                  <div className="transition duration-500 group-hover:-translate-y-1">
                     <p className="text-xs uppercase tracking-[0.24em] text-[var(--champagne)]">
                       {project.category} / {project.year}
                     </p>
@@ -420,13 +433,13 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.div variants={fadeUp}>
-              <SectionLabel>Servicos</SectionLabel>
+              <SectionLabel>Serviços</SectionLabel>
             </motion.div>
             <motion.h2
               variants={fadeUp}
               className="mt-8 font-display text-5xl font-medium leading-none tracking-tight sm:text-6xl"
             >
-              CGI para arquitetura com direcao artistica e precisao comercial.
+              CGI para arquitetura com direção artística e precisão comercial.
             </motion.h2>
           </motion.div>
 
@@ -469,11 +482,11 @@ export default function Home() {
               <SectionLabel>Cursos e mentoria</SectionLabel>
               <div className="mt-24 max-w-xl">
                 <h2 className="font-display text-5xl font-medium leading-none tracking-tight sm:text-7xl">
-                  Ensino o que vivo na pratica.
+                  Ensino o que vivo na prática.
                 </h2>
                 <p className="mt-8 text-lg leading-8 text-white/62">
-                  Formacao criativa para artistas que querem elevar imagem, luz, narrativa e
-                  producao com mentalidade de estudio internacional.
+                  Formação criativa para artistas que querem elevar imagem, luz, narrativa e
+                  produção com mentalidade de estúdio internacional.
                 </p>
                 <div className="mt-10 grid gap-3 sm:grid-cols-2">
                   {mentorshipItems.map((item) => (
@@ -518,7 +531,7 @@ export default function Home() {
           >
             <img
               src="/assets/artist-guilherme.jpeg"
-              alt="Retrato cinematografico de Guilherme"
+              alt="Retrato cinematográfico de Guilherme"
               className="h-full w-full object-cover object-[50%_22%]"
             />
             <div className="absolute inset-0 bg-black/18" />
@@ -540,7 +553,7 @@ export default function Home() {
               Imagens para arquitetura antes dela existir.
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-8 text-xl leading-9 text-[var(--graphite)]">
-              Especialista em visualizacao arquitetonica, interiores e criacao de imagens 3D
+              Especialista em visualização arquitetônica, interiores e criação de imagens 3D
               realistas para arquitetura e empreendimentos premium.
             </motion.p>
           </motion.div>
@@ -558,8 +571,8 @@ export default function Home() {
             </div>
             <div className="lg:justify-self-end">
               <p className="max-w-md text-lg leading-8 text-white/62">
-                Renderizacoes, filmes e direcao visual para arquitetura, interiores e
-                empreendimentos imobiliarios de alto padrao.
+                Renderizações, filmes e direção visual para arquitetura, interiores e
+                empreendimentos imobiliários de alto padrão.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <PrimaryButton href="mailto:contato@guilhermestudio.com" variant="light">

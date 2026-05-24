@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Guilherme Studio | Archviz CGI",
   description:
-    "Portfolio premium de visualizacao arquitetonica 3D, interiores, fachadas, CGI e renderizacao imobiliaria."
+    "Portfolio premium de visualização arquitetônica 3D, interiores, fachadas, CGI e renderização imobiliária."
 };
 
 export default function RootLayout({
