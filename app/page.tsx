@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useScroll, useTransform, type Variants } from "framer-motion";
-import { ArrowUpRight, Film, Mail, Menu, MoveRight, Play, Send, X } from "lucide-react";
+import { ArrowUpRight, Film, Mail, Menu, MoveRight, Send, X } from "lucide-react";
 import { useState } from "react";
 
 const navItems = ["Projetos", "Serviços", "Mentoria", "Sobre", "Contato"];
@@ -64,14 +64,33 @@ const services = [
   "Conceitos visuais para arquitetura"
 ];
 
-const mentorshipItems = [
-  "Vídeos mentorando",
-  "Bastidores e making of",
-  "Workflow de produção",
-  "Estudos de iluminação",
-  "Processo criativo",
-  "Direção de imagem"
-];
+const trainingSection = {
+  label: "FORMAÇÕES PRESENCIAIS",
+  title: (
+    <>
+      Aprendizado
+      <br />
+      prático para quem
+      <br />
+      vive imagem e
+      <br />
+      arquitetura.
+    </>
+  ),
+  description:
+    "Guilherme Melo conduz aulas presenciais para quem deseja aprofundar a criação de imagens arquitetônicas com excelência. Da iluminação à pós-produção, tudo com foco em resultado, processo e repertório visual.",
+  image: "/assets/training-class.png",
+  imageAlt: "Turma presencial de visualização arquitetônica em aula prática",
+  captionItems: ["Turmas fechadas", "prática presencial", "workflow real"],
+  items: [
+    "Aulas presenciais em turma",
+    "Workflow de produção",
+    "Iluminação e composição",
+    "Renderização realista",
+    "Pós-produção de imagem",
+    "Análise de projetos na prática"
+  ]
+};
 
 const softEase = [0.22, 1, 0.36, 1] as const;
 
@@ -191,6 +210,78 @@ function FullscreenMenu({
   );
 }
 
+function TrainingSection() {
+  return (
+    <section id="mentoria" className="px-3 py-3 sm:px-5">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.18 }}
+        transition={{ duration: 0.9, ease: softEase }}
+        className="mx-auto max-w-[1840px] overflow-hidden rounded-[26px] bg-[var(--ink)] text-[var(--chalk)] shadow-[0_28px_90px_rgba(37,30,22,0.13)] sm:rounded-[36px] lg:rounded-[38px]"
+      >
+        <div className="grid lg:min-h-[760px] lg:grid-cols-[0.48fr_0.52fr]">
+          <div className="flex min-h-[620px] flex-col bg-[#11100d] px-6 py-10 sm:px-10 sm:py-12 lg:px-16 lg:py-16">
+            <span className="inline-flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.42em] text-[var(--champagne)]">
+              <span className="h-px w-11 bg-[var(--champagne)]" />
+              {trainingSection.label}
+            </span>
+
+            <div className="mt-auto max-w-[650px] pt-20">
+              <h2 className="font-display text-[clamp(3rem,4.35vw,5.35rem)] font-medium leading-[0.9] tracking-tight text-[#f5f0e8]">
+                {trainingSection.title}
+              </h2>
+
+              <p className="mt-9 max-w-[620px] text-base leading-8 text-[#c8c1b5] sm:text-lg">
+                {trainingSection.description}
+              </p>
+
+              <div className="mt-12 grid gap-x-8 sm:grid-cols-2">
+                {trainingSection.items.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 border-b border-white/12 py-5 text-sm font-medium leading-6 text-[#f5f0e8] sm:gap-4 sm:whitespace-nowrap sm:text-[15px]"
+                  >
+                    <span className="h-px w-6 shrink-0 bg-[var(--champagne)]" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="relative min-h-[420px] overflow-hidden bg-[#1b1712] sm:min-h-[560px] lg:min-h-full">
+            <img
+              src={trainingSection.image}
+              alt={trainingSection.imageAlt}
+              className="h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,16,13,0.03)_0%,rgba(17,16,13,0.16)_58%,rgba(17,16,13,0.35)_100%)]" />
+            <div className="absolute inset-0 bg-[#11100d]/[0.08]" />
+
+            <div className="absolute bottom-5 left-5 right-5 rounded-[18px] border border-[rgba(173,138,91,0.26)] bg-[#11100d]/65 px-6 py-5 text-sm text-[#d8d0c4] shadow-2xl backdrop-blur-md sm:bottom-6 sm:left-8 sm:right-8 sm:px-8 sm:text-base">
+              <span className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:flex-nowrap sm:justify-between">
+                <span className="h-px w-7 shrink-0 bg-[var(--champagne)]" />
+                {trainingSection.captionItems.map((item, index) => (
+                  <span
+                    key={item}
+                    className="inline-flex items-center gap-5 whitespace-nowrap"
+                  >
+                    <span>{item}</span>
+                    {index < trainingSection.captionItems.length - 1 ? (
+                      <span className="hidden h-1 w-1 rounded-full bg-[var(--champagne)]/70 sm:block" />
+                    ) : null}
+                  </span>
+                ))}
+              </span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activePreview, setActivePreview] = useState<string | null>(null);
@@ -264,10 +355,6 @@ export default function Home() {
             className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(255,250,241,0.14),transparent_35%)]"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,11,10,0.22)_0%,rgba(12,11,10,0.06)_45%,rgba(12,11,10,0.56)_100%)]" />
-          <div className="absolute right-8 top-24 z-20 hidden rounded-full bg-black/20 px-5 py-3 text-xs font-semibold text-white/62 backdrop-blur-md lg:block">
-            Cinematic loop
-          </div>
-
           <div className="relative z-10 mx-auto flex min-h-[calc(100vh-24px)] max-w-7xl flex-col justify-end px-5 pb-8 pt-28 sm:px-8 sm:pb-10 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[1.06fr_0.56fr] lg:items-end">
               <div>
@@ -469,56 +556,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="mentoria" className="px-3 py-3">
-        <motion.div
-          initial={{ opacity: 0, y: 42 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.18 }}
-          transition={{ duration: 0.9, ease: softEase }}
-          className="relative mx-auto max-w-[1520px] overflow-hidden rounded-[26px] bg-[var(--ink)] text-[var(--chalk)] sm:rounded-[36px]"
-        >
-          <div className="grid min-h-[760px] lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="flex flex-col justify-between px-6 py-10 sm:px-10 lg:px-14">
-              <SectionLabel>Cursos e mentoria</SectionLabel>
-              <div className="mt-24 max-w-xl">
-                <h2 className="font-display text-5xl font-medium leading-none tracking-tight sm:text-7xl">
-                  Ensino o que vivo na prática.
-                </h2>
-                <p className="mt-8 text-lg leading-8 text-white/62">
-                  Formação criativa para artistas que querem elevar imagem, luz, narrativa e
-                  produção com mentalidade de estúdio internacional.
-                </p>
-                <div className="mt-10 grid gap-3 sm:grid-cols-2">
-                  {mentorshipItems.map((item) => (
-                    <div
-                      key={item}
-                      className="border-b border-white/12 py-3 text-sm font-semibold text-white/76"
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="relative min-h-[480px] overflow-hidden">
-              <video
-                src="/mp_.mp4"
-                poster="/assets/project-lobby.png"
-                className="h-full w-full object-cover opacity-82"
-                muted
-                loop
-                autoPlay
-                playsInline
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.42))]" />
-              <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between border-t border-white/20 pt-5 text-sm text-white/70">
-                <span>Workflow / Lighting / Making of</span>
-                <Play className="h-5 w-5 fill-white" />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+      <TrainingSection />
 
       <section id="sobre" className="px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
